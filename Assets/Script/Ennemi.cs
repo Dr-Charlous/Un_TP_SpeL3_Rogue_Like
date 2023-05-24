@@ -1,15 +1,13 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class Player : MonoBehaviour
+public class Ennemi : MonoBehaviour
 {
     public Vector2Int Position;
     public float Offset;
 
-    public Vector3 previuspos;
+    int action = 0;
 
     public int LifePoints;
     public int ArmorPoints;
@@ -18,44 +16,40 @@ public class Player : MonoBehaviour
     private void Start()
     {
         Character stats = new Character(LifePoints, ArmorPoints, DamagePoints);
+        StartCoroutine(IA());
     }
 
-    public void Update()
+    public IEnumerator IA()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        action = Random.Range(0, 3);
+        Move(action);
+        yield return new WaitForSeconds(1);
+        StartCoroutine(IA());
+    }
+
+    public void Move(int a)
+    {
+        if (a == 0)
         {
             if (GridData.gridData.isBlocked[Position.x, Position.y + 1] == false)
                 Position = new Vector2Int(Position.x, Position.y + 1);
         }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
+        else if (a == 1)
         {
             if (GridData.gridData.isBlocked[Position.x, Position.y - 1] == false)
                 Position = new Vector2Int(Position.x, Position.y - 1);
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (a == 2)
         {
             if (GridData.gridData.isBlocked[Position.x + 1, Position.y] == false)
                 Position = new Vector2Int(Position.x + 1, Position.y);
         }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (a == 3)
         {
             if (GridData.gridData.isBlocked[Position.x - 1, Position.y] == false)
                 Position = new Vector2Int(Position.x - 1, Position.y);
         }
 
         transform.position = new Vector3(Position.x + Offset, Position.y + Offset);
-
-
-
-        //JETROUVERAIUNNOMPLUSTARD();
-    }
-
-    private void JETROUVERAIUNNOMPLUSTARD()
-    {
-        if (transform.position != previuspos)
-        {
-            print(transform.position);
-        }
-        previuspos = transform.position;
     }
 }

@@ -14,4 +14,10 @@ public class Character
         ArmorPoints = a;
         DamagePoints = d;
     }
+
+    public void Battle(Character e)
+    {
+        e.LifePoints = DamagePoints - e.ArmorPoints;
+        LifePoints = e.DamagePoints - ArmorPoints;
+    }
 }

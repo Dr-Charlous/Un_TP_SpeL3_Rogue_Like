@@ -9,13 +9,8 @@ public class Ennemi : MonoBehaviour
 
     //int action = 0;
 
-    public int LifePoints;
-    public int ArmorPoints;
-    public int DamagePoints;
-
     private void Start()
     {
-        Character stats = new Character(LifePoints, ArmorPoints, DamagePoints);
         //StartCoroutine(IA());
     }
 

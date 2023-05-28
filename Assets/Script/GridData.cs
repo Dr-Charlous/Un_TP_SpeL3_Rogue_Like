@@ -6,15 +6,19 @@ using UnityEngine.Tilemaps;
 
 public class GridData : MonoBehaviour
 {
-    static public GridData gridData;
+    static public GridData gridData = new GridData();
 
     public Tilemap tilemap;
     public TileBase _tile;
 
     public Vector2Int MapSize;
     public Vector2Int[] BlockedCells;
+    public Vector2Int[] EnnemiCells;
 
     public bool[,] isBlocked;
+    public Character[,] EnnemiPosNStats;
+
+
 
     public GameObject PrefabPlayer;
     public GameObject Player;
@@ -32,6 +36,7 @@ public class GridData : MonoBehaviour
     private void Start()
     {
         isBlocked = new bool[MapSize.x,MapSize.y];
+        EnnemiPosNStats = new Character[MapSize.x,MapSize.y];
 
         for (int y = MapSize.y-1; y >= 0; y--)
         {
@@ -48,13 +53,17 @@ public class GridData : MonoBehaviour
 
         EdgeInit();
 
-        Player = Instantiate(PrefabPlayer, new Vector3(OriginPosition.x, OriginPosition.y,0), Quaternion.Euler(0, 0, 0));
+        Player = Instantiate(PrefabPlayer, new Vector3(OriginPosition.x + 0.5f, OriginPosition.y + 0.5f, 0), Quaternion.Euler(0, 0, 0));
         Player.GetComponent<Player>().Position = new Vector2Int((int)OriginPosition.x, (int)OriginPosition.y);
         Player.GetComponent<Player>().Offset = 0.5f;
 
-        Ennemy = Instantiate(PrefabEnnemy, new Vector3(OriginPositionEnnemy.x, OriginPositionEnnemy.y, 0), Quaternion.Euler(0, 0, 0));
-        Ennemy.GetComponent<Ennemi>().Position = new Vector2Int((int)OriginPositionEnnemy.x, (int)OriginPositionEnnemy.y);
-        Ennemy.GetComponent<Ennemi>().Offset = 0.5f;
+        foreach (var pos in EnnemiCells)
+        {
+            Ennemy = Instantiate(PrefabEnnemy, new Vector3(pos.x + 0.5f, pos.y + 0.5f, 0), Quaternion.Euler(0, 0, 0));
+
+            Character stats = new Character(10, 5, 3);
+            EnnemiPosNStats[pos.x, pos.y] = stats;
+        }
     }
 
     private void EdgeInit()

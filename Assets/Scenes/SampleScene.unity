@@ -192,6 +192,9 @@ MonoBehaviour:
   - {x: 12, y: 5}
   - {x: 12, y: 4}
   - {x: 12, y: 3}
+  EnnemiCells:
+  - {x: 3, y: 3}
+  - {x: 5, y: 3}
   PrefabPlayer: {fileID: 8340920321854667608, guid: 63c1e41767b86a042b38a446c05d04e9, type: 3}
   Player: {fileID: 0}
   OriginPosition: {x: 2, y: 2}

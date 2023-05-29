@@ -11,16 +11,24 @@ public class Player : MonoBehaviour
     public Vector2Int Position;
     public float Offset;
 
-    public Vector3 previuspos;
+    public GameObject PotionPrefab;
+    public GameObject CoinPrefab;
 
-    public Character stats;
-    public int LifePoints;
-    public int ArmorPoints;
-    public int DamagePoints;
+    //public Vector3 previuspos;
+
+    public int Life;
+    public int InitLife;
+    public int Armor;
+    public int Damage;
+    public int Coin;
 
     private void Start()
     {
-        stats = new Character(LifePoints, ArmorPoints, DamagePoints);
+        Life = 10;
+        InitLife = 10;
+        Armor = 4;
+        Damage = 6;
+        Coin = 0;
     }
 
     public void Update()
@@ -52,21 +60,69 @@ public class Player : MonoBehaviour
     
     private void Move(int x, int y)
     {
-        if (gridData.isBlocked[Position.x + x, Position.y + y] == false)
-            Position = new Vector2Int(Position.x + x, Position.y + y);
-        else if (gridData.EnnemiPosNStats[Position.x + x, Position.y + y] != null)
+        if (gridData.EnnemiPos[Position.x + x, Position.y + y] != null)
         {
-            stats.Battle(gridData.EnnemiPosNStats[Position.x + x, Position.y + y]);
-            Debug.Log("ecsecsec");
+            Battle(gridData.EnnemiPos[Position.x + x, Position.y + y]);
+            Debug.Log("attaque");
+        }
+        else if (gridData.isBlocked[Position.x + x, Position.y + y] == false)
+            Position = new Vector2Int(Position.x + x, Position.y + y);
+
+        if (gridData.DropPos[Position.x, Position.y] != null)
+        {
+            if (gridData.DropPos[Position.x, Position.y].name == $"{PotionPrefab.name}(Clone)")
+            {
+                Life += 5;
+                if (Life > InitLife)
+                    Life = InitLife;
+                Destroy(gridData.DropPos[Position.x, Position.y]);
+            }
+
+            if (gridData.DropPos[Position.x, Position.y].name == $"{CoinPrefab.name}(Clone)")
+            {
+                Coin += 1;
+                Destroy(gridData.DropPos[Position.x, Position.y]);
+            }
         }
     }
 
-    private void JETROUVERAIUNNOMPLUSTARD()
+    public void Battle(GameObject e)
     {
-        if (transform.position != previuspos)
+        if (Damage > e.GetComponent<Ennemi>().Armor)
+            e.GetComponent<Ennemi>().Life -= Damage - e.GetComponent<Ennemi>().Armor;
+
+        if (e.GetComponent<Ennemi>().Life <= 0)
         {
-            print(transform.position);
+            int random = UnityEngine.Random.Range(0, 10);
+            if (random < 3)
+            {
+                GameObject Potion = Instantiate(PotionPrefab, e.transform.position, Quaternion.Euler(new Vector3(0,0,0)));
+                gridData.DropPos[(int)e.transform.position.x, (int)e.transform.position.y] = Potion;
+            }
+            else if (random < 6)
+            {
+                GameObject Coin = Instantiate(CoinPrefab, e.transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+                gridData.DropPos[(int)e.transform.position.x, (int)e.transform.position.y] = Coin;
+            }
+
+            Destroy(e);
         }
-        previuspos = transform.position;
+
+        if (e.GetComponent<Ennemi>().Damage > Armor)
+            Life -= e.GetComponent<Ennemi>().Damage - Armor;
+
+        if (Life <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
+
+    //private void JETROUVERAIUNNOMPLUSTARD()
+    //{
+    //    if (transform.position != previuspos)
+    //    {
+    //        print(transform.position);
+    //    }
+    //    previuspos = transform.position;
+    //}
 }

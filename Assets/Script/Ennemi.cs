@@ -7,13 +7,20 @@ public class Ennemi : MonoBehaviour
     public Vector2Int Position;
     public float Offset;
 
+    public int Life;
+    public int Armor;
+    public int Damage;
+
     //int action = 0;
 
     private void Start()
     {
+        Life = 10;
+        Armor = 3;
+        Damage = 5;
+
         //StartCoroutine(IA());
     }
-
 
 
 

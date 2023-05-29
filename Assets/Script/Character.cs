@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Character
 {
-    private int LifePoints { set; get; }
-    private int ArmorPoints { set; get; }
-    private int DamagePoints { set; get; }
+    public int LifePoints { set; get; }
+    public int ArmorPoints { set; get; }
+    public int DamagePoints { set; get; }
 
     public Character(int l, int a, int d)
     {
@@ -18,6 +18,19 @@ public class Character
     public void Battle(Character e)
     {
         e.LifePoints = DamagePoints - e.ArmorPoints;
+
+        if (e.LifePoints <= 0)
+        {
+            
+        }
+
         LifePoints = e.DamagePoints - ArmorPoints;
+
+        if (LifePoints <= 0)
+        {
+
+        }
+
+        Debug.Log("attaque finit");
     }
 }

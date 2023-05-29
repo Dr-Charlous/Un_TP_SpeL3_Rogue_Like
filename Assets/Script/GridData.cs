@@ -6,17 +6,17 @@ using UnityEngine.Tilemaps;
 
 public class GridData : MonoBehaviour
 {
-    static public GridData gridData = new GridData();
-
     public Tilemap tilemap;
     public TileBase _tile;
 
     public Vector2Int MapSize;
     public Vector2Int[] BlockedCells;
     public Vector2Int[] EnnemiCells;
+    public Vector2Int[] DropCells;
 
     public bool[,] isBlocked;
-    public Character[,] EnnemiPosNStats;
+    public GameObject[,] EnnemiPos;
+    public GameObject[,] DropPos;
 
 
 
@@ -25,18 +25,15 @@ public class GridData : MonoBehaviour
     public Vector2 OriginPosition;
 
     public GameObject PrefabEnnemy;
-    public GameObject Ennemy;
+    public GameObject[] Ennemy;
     public Vector2 OriginPositionEnnemy;
-
-    public void Awake()
-    {
-        gridData = this;
-    }
 
     private void Start()
     {
         isBlocked = new bool[MapSize.x,MapSize.y];
-        EnnemiPosNStats = new Character[MapSize.x,MapSize.y];
+        EnnemiPos = new GameObject[MapSize.x,MapSize.y];
+        DropPos = new GameObject[MapSize.x,MapSize.y];
+        Ennemy = new GameObject[EnnemiCells.Length];
 
         for (int y = MapSize.y-1; y >= 0; y--)
         {
@@ -51,20 +48,27 @@ public class GridData : MonoBehaviour
             isBlocked[cells.x,cells.y] = true;
         }
 
+        for (int i = 0; i < EnnemiCells.Length; i++)
+        {
+            Ennemy[i] = Instantiate(PrefabEnnemy, new Vector3(EnnemiCells[i].x + 0.5f, EnnemiCells[i].y + 0.5f, 0), Quaternion.Euler(0, 0, 0));
+
+            Ennemy[i].GetComponent<Ennemi>().Life = 10;
+            Ennemy[i].GetComponent<Ennemi>().Armor = 5;
+            Ennemy[i].GetComponent<Ennemi>().Damage = 3;
+
+            EnnemiPos[EnnemiCells[i].x, EnnemiCells[i].y] = Ennemy[i];
+        }
+
         EdgeInit();
 
-        Player = Instantiate(PrefabPlayer, new Vector3(OriginPosition.x + 0.5f, OriginPosition.y + 0.5f, 0), Quaternion.Euler(0, 0, 0));
-        Player.GetComponent<Player>().Position = new Vector2Int((int)OriginPosition.x, (int)OriginPosition.y);
+        //Player = Instantiate(PrefabPlayer, new Vector3(OriginPosition.x + 0.5f, OriginPosition.y + 0.5f, 0), Quaternion.Euler(0, 0, 0));
+        //Player.GetComponent<Player>().Position = new Vector2Int((int)OriginPosition.x, (int)OriginPosition.y);
         Player.GetComponent<Player>().Offset = 0.5f;
 
-        foreach (var pos in EnnemiCells)
-        {
-            Ennemy = Instantiate(PrefabEnnemy, new Vector3(pos.x + 0.5f, pos.y + 0.5f, 0), Quaternion.Euler(0, 0, 0));
-
-            Character stats = new Character(10, 5, 3);
-            EnnemiPosNStats[pos.x, pos.y] = stats;
-        }
     }
+
+
+
 
     private void EdgeInit()
     {

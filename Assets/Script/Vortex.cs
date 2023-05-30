@@ -8,6 +8,7 @@ public class Vortex : MonoBehaviour
 
     public GridData gridData;
     public GameObject Player;
+    public bool Teleported;
 
     public Vector2Int Position;
     public float Offset;
@@ -17,13 +18,20 @@ public class Vortex : MonoBehaviour
         gridData = GameObject.FindGameObjectWithTag("grid").GetComponent<GridData>();
         Player = GameObject.FindGameObjectWithTag("player");
         Position = new Vector2Int((int)transform.position.x, (int)transform.position.y);
+        Teleported = false;
     }
 
     public void Update()
     {
-        if (Player.GetComponent<Player>().Position == Position)
+        if (Player.GetComponent<Player>().Position == Position && Teleported == false)
         {
-            Teleport(1, 0);
+            Teleport(0, 0);
+            VortexEnd.GetComponent<Vortex>().Teleported = true;
+            Teleported = false;
+        }
+        else if (Player.GetComponent<Player>().Position != Position)
+        {
+            Teleported = false;
         }
     }
 

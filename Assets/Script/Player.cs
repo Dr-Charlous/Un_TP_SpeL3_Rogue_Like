@@ -91,6 +91,23 @@ public class Player : MonoBehaviour
                 Destroy(gridData.DropPos[Position.x, Position.y]);
             }
         }
+
+        if (gridData.EnnemiPos[Position.x + 1, Position.y] != null)
+        {
+            Life -= gridData.EnnemiPos[Position.x + 1, Position.y].GetComponent<Ennemi>().Damage - Armor;
+        }
+        else if (gridData.EnnemiPos[Position.x - 1, Position.y] != null)
+        {
+            Life -= gridData.EnnemiPos[Position.x - 1, Position.y].GetComponent<Ennemi>().Damage - Armor;
+        }
+        else if (gridData.EnnemiPos[Position.x, Position.y + 1] != null)
+        {
+            Life -= gridData.EnnemiPos[Position.x, Position.y + 1].GetComponent<Ennemi>().Damage - Armor;
+        }
+        else if (gridData.EnnemiPos[Position.x, Position.y - 1] != null)
+        {
+            Life -= gridData.EnnemiPos[Position.x, Position.y - 1].GetComponent<Ennemi>().Damage - Armor;
+        }
     }
 
     public void Battle(GameObject e)

@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     public GameObject PotionPrefab;
     public GameObject CoinPrefab;
+    public GameObject VortexPrefab;
 
     //public Vector3 previuspos;
 

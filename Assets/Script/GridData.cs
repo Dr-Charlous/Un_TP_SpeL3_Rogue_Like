@@ -13,12 +13,15 @@ public class GridData : MonoBehaviour
     public Vector2Int[] BlockedCells;
     public Vector2Int[] EnnemiCells;
     public Vector2Int[] DropCells;
+    public Vector2Int[] PotCells;
 
     public bool[,] isBlocked;
     public GameObject[,] EnnemiPos;
     public GameObject[,] DropPos;
+    public GameObject[,] PotPos;
 
-
+    public GameObject PrefabPot;
+    public GameObject[] Pot;
 
     public GameObject PrefabPlayer;
     public GameObject Player;
@@ -33,6 +36,8 @@ public class GridData : MonoBehaviour
         isBlocked = new bool[MapSize.x,MapSize.y];
         EnnemiPos = new GameObject[MapSize.x,MapSize.y];
         DropPos = new GameObject[MapSize.x,MapSize.y];
+        PotPos = new GameObject[MapSize.x,MapSize.y];
+        Pot = new GameObject[PotCells.Length];
         Ennemy = new GameObject[EnnemiCells.Length];
 
         for (int y = MapSize.y-1; y >= 0; y--)
@@ -57,6 +62,15 @@ public class GridData : MonoBehaviour
             Ennemy[i].GetComponent<Ennemi>().Damage = 3;
 
             EnnemiPos[EnnemiCells[i].x, EnnemiCells[i].y] = Ennemy[i];
+        }
+
+        for (int i = 0; i < PotCells.Length; i++)
+        {
+            Pot[i] = Instantiate(PrefabPot, new Vector3(PotCells[i].x + 0.5f, PotCells[i].y + 0.5f, 0), Quaternion.Euler(0, 0, 0));
+
+            Pot[i].GetComponent<Pot>().Offset = 0.5f;
+
+            PotPos[PotCells[i].x, PotCells[i].y] = Pot[i];
         }
 
         EdgeInit();

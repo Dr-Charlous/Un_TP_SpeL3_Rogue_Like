@@ -21,6 +21,8 @@ public class Player : MonoBehaviour
     public int Armor;
     public int Damage;
     public int Coin;
+    public int Lvl;
+    public int XP;
 
     private void Start()
     {
@@ -29,6 +31,8 @@ public class Player : MonoBehaviour
         Armor = 4;
         Damage = 6;
         Coin = 0;
+        Lvl = 1;
+        XP = 0;
     }
 
     public void Update()
@@ -63,7 +67,10 @@ public class Player : MonoBehaviour
         if (gridData.EnnemiPos[Position.x + x, Position.y + y] != null)
         {
             Battle(gridData.EnnemiPos[Position.x + x, Position.y + y]);
-            Debug.Log("attaque");
+        }
+        else if (gridData.PotPos[Position.x + x, Position.y + y] != null)
+        {
+            gridData.PotPos[Position.x + x, Position.y + y].GetComponent<Pot>().Move(x, y);
         }
         else if (gridData.isBlocked[Position.x + x, Position.y + y] == false)
             Position = new Vector2Int(Position.x + x, Position.y + y);
@@ -77,8 +84,7 @@ public class Player : MonoBehaviour
                     Life = InitLife;
                 Destroy(gridData.DropPos[Position.x, Position.y]);
             }
-
-            if (gridData.DropPos[Position.x, Position.y].name == $"{CoinPrefab.name}(Clone)")
+            else if (gridData.DropPos[Position.x, Position.y].name == $"{CoinPrefab.name}(Clone)")
             {
                 Coin += 1;
                 Destroy(gridData.DropPos[Position.x, Position.y]);
@@ -106,6 +112,8 @@ public class Player : MonoBehaviour
             }
 
             Destroy(e);
+
+            XPDrop(Lvl, XP);
         }
 
         if (e.GetComponent<Ennemi>().Damage > Armor)
@@ -114,6 +122,22 @@ public class Player : MonoBehaviour
         if (Life <= 0)
         {
             Destroy(gameObject);
+        }
+    }
+
+    public void XPDrop(int lvl, int xp)
+    {
+        int randomXP = UnityEngine.Random.Range(2, 5);
+        XP += randomXP;
+
+        if (xp >= (lvl*8) && lvl < 5)
+        {
+            XP = 0;
+            Lvl += 1;
+
+            InitLife += 2;
+            Life += 2;
+            Damage += 2;
         }
     }
 

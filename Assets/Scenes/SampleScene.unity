@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 441764246}
   m_Layer: 0
   m_Name: Grid
-  m_TagString: Untagged
+  m_TagString: grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -195,7 +195,14 @@ MonoBehaviour:
   EnnemiCells:
   - {x: 3, y: 3}
   - {x: 5, y: 3}
+  - {x: 5, y: 5}
+  - {x: 4, y: 4}
+  - {x: 5, y: 6}
   DropCells: []
+  PotCells:
+  - {x: 3, y: 2}
+  PrefabPot: {fileID: 3481282652248986221, guid: 24289f0a8a048a348972f40300029fb1, type: 3}
+  Pot: []
   PrefabPlayer: {fileID: 8340920321854667608, guid: 63c1e41767b86a042b38a446c05d04e9, type: 3}
   Player: {fileID: 1114170863}
   OriginPosition: {x: 2, y: 2}
@@ -6613,6 +6620,10 @@ PrefabInstance:
     - target: {fileID: 8340920321854667608, guid: 63c1e41767b86a042b38a446c05d04e9, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8340920321854667608, guid: 63c1e41767b86a042b38a446c05d04e9, type: 3}
+      propertyPath: m_TagString
+      value: player
       objectReference: {fileID: 0}
     - target: {fileID: 9189743879392626837, guid: 63c1e41767b86a042b38a446c05d04e9, type: 3}
       propertyPath: m_RootOrder

@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public GameObject CoinPrefab;
     public GameObject VortexPrefab;
 
-    //public Vector3 previuspos;
+    public Vector3 previuspos;
 
     public int Life;
     public int InitLife;
@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     public int Coin;
     public int Lvl;
     public int XP;
+    public bool Attacked;
 
     private void Start()
     {
@@ -34,6 +35,7 @@ public class Player : MonoBehaviour
         Coin = 0;
         Lvl = 1;
         XP = 0;
+        Attacked = false;
     }
 
     public void Update()
@@ -59,7 +61,7 @@ public class Player : MonoBehaviour
 
 
 
-        //JETROUVERAIUNNOMPLUSTARD();
+        JETROUVERAIUNNOMPLUSTARD();
     }
 
     
@@ -92,22 +94,24 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (gridData.EnnemiPos[Position.x + 1, Position.y] != null)
+        bool arround = false;
+        for (int x_ = -1; x_ <= 1; x_++)
         {
-            Life -= gridData.EnnemiPos[Position.x + 1, Position.y].GetComponent<Ennemi>().Damage - Armor;
+            for (int y_ = -1; y_ <= 1; y_++)
+            {
+                if (gridData.EnnemiPos[Position.x + x_, Position.y + y_] != null)
+                {
+                    if (Attacked == false)
+                    {
+                        Life -= gridData.EnnemiPos[Position.x + x_, Position.y + y_].GetComponent<Ennemi>().Damage - Armor;
+                        Attacked = true;
+                    }
+                    arround = true;
+                }
+            }
         }
-        else if (gridData.EnnemiPos[Position.x - 1, Position.y] != null)
-        {
-            Life -= gridData.EnnemiPos[Position.x - 1, Position.y].GetComponent<Ennemi>().Damage - Armor;
-        }
-        else if (gridData.EnnemiPos[Position.x, Position.y + 1] != null)
-        {
-            Life -= gridData.EnnemiPos[Position.x, Position.y + 1].GetComponent<Ennemi>().Damage - Armor;
-        }
-        else if (gridData.EnnemiPos[Position.x, Position.y - 1] != null)
-        {
-            Life -= gridData.EnnemiPos[Position.x, Position.y - 1].GetComponent<Ennemi>().Damage - Armor;
-        }
+        if (arround == false)
+            Attacked = false;
     }
 
     public void Battle(GameObject e)
@@ -159,12 +163,12 @@ public class Player : MonoBehaviour
         }
     }
 
-    //private void JETROUVERAIUNNOMPLUSTARD()
-    //{
-    //    if (transform.position != previuspos)
-    //    {
-    //        print(transform.position);
-    //    }
-    //    previuspos = transform.position;
-    //}
+    private void JETROUVERAIUNNOMPLUSTARD()
+    {
+        if (transform.position != previuspos)
+        {
+            print(transform.position);
+        }
+        previuspos = transform.position;
+    }
 }

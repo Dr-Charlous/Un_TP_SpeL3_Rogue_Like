@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1829395504301044773}
   - component: {fileID: 7767068482313319062}
   - component: {fileID: 650327241369063031}
+  - component: {fileID: 7258124932631261046}
   m_Layer: 0
   m_Name: Vortex
   m_TagString: Untagged
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1699513267, guid: b3f71ef7339b5714384e106fca65a042, type: 3}
+  m_Sprite: {fileID: -774643112, guid: 7a5a682ffe7e64c498f252bf10a0d7ce, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,3 +99,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VortexEnd: {fileID: 0}
+  gridData: {fileID: 0}
+  Player: {fileID: 0}
+  Teleported: 0
+  Position: {x: 0, y: 0}
+  Offset: 0
+--- !u!95 &7258124932631261046
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5962566191723304280}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0b40c39f05bc9064fb223fa3ce8cfba7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

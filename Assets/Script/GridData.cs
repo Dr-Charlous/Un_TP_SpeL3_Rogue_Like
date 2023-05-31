@@ -20,7 +20,8 @@ public class GridData : MonoBehaviour
     public GameObject[,] DropPos;
     public GameObject[,] PotPos;
 
-    public GameObject PrefabPot;
+    public GameObject PrefabBigPot;
+    public GameObject PrefabLittlePot;
     public GameObject[] Pot;
 
     public GameObject PrefabPlayer;
@@ -66,8 +67,13 @@ public class GridData : MonoBehaviour
 
         for (int i = 0; i < PotCells.Length; i++)
         {
-            Pot[i] = Instantiate(PrefabPot, new Vector3(PotCells[i].x + 0.5f, PotCells[i].y + 0.5f, 0), Quaternion.Euler(0, 0, 0));
+            int random = UnityEngine.Random.Range(0, 2);
+            if (random == 0)
+                Pot[i] = Instantiate(PrefabBigPot, new Vector3(PotCells[i].x + 0.5f, PotCells[i].y + 0.5f, 0), Quaternion.Euler(0, 0, 0));
+            if (random == 1)
+                Pot[i] = Instantiate(PrefabLittlePot, new Vector3(PotCells[i].x + 0.5f, PotCells[i].y + 0.5f, 0), Quaternion.Euler(0, 0, 0));
 
+            print(random);
             Pot[i].GetComponent<Pot>().Offset = 0.5f;
 
             PotPos[PotCells[i].x, PotCells[i].y] = Pot[i];

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9189743879392626837}
   - component: {fileID: 37768898393355503}
   - component: {fileID: 6287847853932054034}
+  - component: {fileID: 5285213309039542680}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -100,7 +101,36 @@ MonoBehaviour:
   gridData: {fileID: 0}
   Position: {x: 1, y: 1}
   Offset: 0.5
+  PotionPrefab: {fileID: 0}
+  CoinPrefab: {fileID: 0}
+  VortexPrefab: {fileID: 0}
   previuspos: {x: 0, y: 0, z: 0}
-  LifePoints: 6
-  ArmorPoints: 6
-  DamagePoints: 6
+  Life: 0
+  InitLife: 0
+  Armor: 0
+  Damage: 0
+  Coin: 0
+  Lvl: 0
+  XP: 0
+  Attacked: 0
+--- !u!95 &5285213309039542680
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8340920321854667608}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 27cad3cdd8ff8294a916baaeed69d9eb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

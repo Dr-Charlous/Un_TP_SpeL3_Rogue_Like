@@ -100,9 +100,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Position: {x: 1, y: 1}
   Offset: 0.5
-  Life: 0
-  Armor: 0
-  Damage: 0
+  PotionPrefab: {fileID: 7597002454625388917, guid: 60f42b489ef792b47be5335baa3dad46, type: 3}
+  CoinPrefab: {fileID: 7017175054386281792, guid: 2bac89c755e3a7b40ade0a2d25b5f58e, type: 3}
+  ennemy: {fileID: 3123016638547167503}
 --- !u!95 &-8568885685218723591
 Animator:
   serializedVersion: 5

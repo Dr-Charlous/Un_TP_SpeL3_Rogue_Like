@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7288399737626622648}
   - component: {fileID: 1885654953461499586}
+  - component: {fileID: -6329167991427868850}
   m_Layer: 0
   m_Name: Potion
   m_TagString: Untagged
@@ -84,3 +85,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-6329167991427868850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7597002454625388917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbbf2c57e6339f846b87b11327cacbce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridData: {fileID: 0}
+  Player: {fileID: 8340920321854667608, guid: 63c1e41767b86a042b38a446c05d04e9, type: 3}
+  Position: {x: 0, y: 0}
+  Offset: 0.5
+  Heal: 5

@@ -98,6 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gridData: {fileID: 0}
-  Player: {fileID: 0}
+  Player: {fileID: 8340920321854667608, guid: 63c1e41767b86a042b38a446c05d04e9, type: 3}
   Position: {x: 0, y: 0}
-  Offset: 0
+  Offset: 0.5

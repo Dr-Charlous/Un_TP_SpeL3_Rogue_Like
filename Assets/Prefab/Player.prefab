@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9189743879392626837}
   - component: {fileID: 37768898393355503}
   - component: {fileID: 6287847853932054034}
+  - component: {fileID: 3132499435380030806}
   - component: {fileID: 5285213309039542680}
   m_Layer: 0
   m_Name: Player
@@ -98,21 +99,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6021be5a9899964f9512e229da12f1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridData: {fileID: 0}
   Position: {x: 1, y: 1}
   Offset: 0.5
-  PotionPrefab: {fileID: 0}
-  CoinPrefab: {fileID: 0}
-  VortexPrefab: {fileID: 0}
-  previuspos: {x: 0, y: 0, z: 0}
-  Life: 0
-  InitLife: 0
-  Armor: 0
-  Damage: 0
+  PotionPrefab: {fileID: 7597002454625388917, guid: 60f42b489ef792b47be5335baa3dad46, type: 3}
+  CoinPrefab: {fileID: 7017175054386281792, guid: 2bac89c755e3a7b40ade0a2d25b5f58e, type: 3}
+  VortexPrefab: {fileID: 5962566191723304280, guid: 51ff2f70a84312345a17abdeea1aa003, type: 3}
+  player: {fileID: 6287847853932054034}
+  InitLife: 10
   Coin: 0
-  Lvl: 0
+  Lvl: 1
   XP: 0
-  Attacked: 0
+--- !u!114 &3132499435380030806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8340920321854667608}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dd092ba3cdbb4447a80231a242c9700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  previuspos: {x: 0, y: 0, z: 0}
 --- !u!95 &5285213309039542680
 Animator:
   serializedVersion: 5

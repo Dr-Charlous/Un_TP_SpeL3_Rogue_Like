@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class Player : Character
 {
@@ -11,18 +11,17 @@ public class Player : Character
 
     }
 
-    public GameObject PotionPrefab;
-    public GameObject CoinPrefab;
-    public GameObject VortexPrefab;
+    Text Stats;
 
-    public Player player;
+    Player player;
 
     public int InitLife;
     public int Coin;
 
     public int Lvl;
     public int XP;
-    private bool Attacked;
+    public bool Dialog;
+    bool Attacked;
 
 
     private void Start()
@@ -41,37 +40,74 @@ public class Player : Character
         XP = 0;
 
         Attacked = false;
+        Dialog = false;
     }
 
     public void Update()
     {
         Player player = gameObject.GetComponent<Player>();
+        Stats.text = $@"Level : {Lvl}
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            Move(0, 1, player);
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            Move(0, -1, player);
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            Move(1, 0, player);
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            Move(-1, 0, player);
-        }
+Exp : {XP}
 
-        transform.position = new Vector3(Position.x + Offset, Position.y + Offset);
+
+
+Life : {LifePoints}/{InitLife}
+
+Armor : {ArmorPoints}
+
+Damage : {DamagePoints}
+
+
+
+Coin : {Coin}";
+
+        if (Dialog == false)
+        {
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                Move(0, 1, player);
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                Move(0, -1, player);
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                Move(1, 0, player);
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                Move(-1, 0, player);
+            }
+
+            transform.position = new Vector3(Position.x + Offset, Position.y + Offset);
+        }
+        else
+        {
+            if (Coin > 0 && LifePoints < InitLife)
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    Coin--;
+                    LifePoints += 5;
+
+                    if (LifePoints > InitLife)
+                    {
+                        LifePoints = InitLife;
+                    }
+                }
+            }
+            else
+            {
+                Dialog = false;
+            }
+        }
     }
 
     
     private void Move(int x, int y, Player player)
     {
-        print(LifePoints);
-
         if (GridData.Instance.isBlocked[Position.x + x, Position.y + y] == false)
         {            
             if (GridData.Instance.ObjAffPos[Position.x + x, Position.y + y] != null)
@@ -83,6 +119,10 @@ public class Player : Character
                 else if (GridData.Instance.ObjAffPos[Position.x + x, Position.y + y].TryGetComponent<Pot>(out Pot pot))
                 {
                     pot.Move(x, y);
+                }
+                else if (GridData.Instance.ObjAffPos[Position.x + x, Position.y + y].TryGetComponent<Pnj>(out Pnj pnj))
+                {
+                    pnj.Dialog(gameObject);
                 }
                 else if (GridData.Instance.ObjAffPos[Position.x + x, Position.y + y].TryGetComponent<Vortex>(out Vortex vortex))
                 {

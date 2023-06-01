@@ -8,9 +8,9 @@ public class Ennemi : Character
     {
     }
 
-    public GameObject PotionPrefab;
-    public GameObject CoinPrefab;
-    public Ennemi ennemy;
+    GameObject PotionPrefab;
+    GameObject CoinPrefab;
+    Ennemi ennemy;
 
     private void Start()
     {

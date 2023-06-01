@@ -22,34 +22,32 @@ public class GridData : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    public Tilemap tilemap;
-    public TileBase _tile;
+    Tilemap tilemap;
+    TileBase _tile;
 
-    public Vector2Int MapSize;
+    Vector2Int MapSize;
     public Vector2Int[] BlockedCells;
     public Vector2Int[] EnnemiesCells;
     public Vector2Int[] DropCells;
     public Vector2Int[] PotCells;
     public Vector2Int[] VortexCells;
+    public Vector2Int PnjCells;
+    GameObject PrefabPnj;
+    GameObject pnj;
 
     [SerializeField]
     private GameObject PrefabVortex;
-    public GameObject[] vortex;
+    GameObject[] vortex;
 
     public bool[,] isBlocked;
     public GameObject[,] ObjAffPos;
 
-    [SerializeField]
-    private GameObject PrefabBigPot;
-    [SerializeField]
-    private GameObject PrefabLittlePot;
-    public GameObject[] Pot;
+    GameObject PrefabBigPot;
+    GameObject PrefabLittlePot;
+    GameObject[] Pot;
 
-    public Vector2 OriginPosition;
-
-    public GameObject PrefabEnnemy;
-    public GameObject[] Ennemy;
-    public Vector2 OriginPositionEnnemy;
+    GameObject PrefabEnnemy;
+    GameObject[] Ennemy;
 
     private void Start()
     {
@@ -59,6 +57,10 @@ public class GridData : MonoBehaviour
         Pot = new GameObject[PotCells.Length];
         Ennemy = new GameObject[EnnemiesCells.Length];
         vortex = new GameObject[VortexCells.Length];
+
+        pnj = Instantiate(PrefabPnj, new Vector3(PnjCells.x + 0.5f, PnjCells.y + 0.5f, 0), Quaternion.Euler(0, 0, 0));
+
+        ObjAffPos[PnjCells.x, PnjCells.y] = pnj;
 
         for (int y = MapSize.y-1; y >= 0; y--)
         {

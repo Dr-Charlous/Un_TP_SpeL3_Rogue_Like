@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Vortex : Item
 {
-    public GameObject player;
+    GameObject player;
     public GameObject VortexEnd;
 
     public Vortex(Vector2Int p, float o) : base(p, o)

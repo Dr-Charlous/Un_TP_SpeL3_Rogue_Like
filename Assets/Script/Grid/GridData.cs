@@ -22,32 +22,29 @@ public class GridData : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-    Tilemap tilemap;
-    TileBase _tile;
-
-    Vector2Int MapSize;
+    public Vector2Int MapSize;
     public Vector2Int[] BlockedCells;
     public Vector2Int[] EnnemiesCells;
     public Vector2Int[] DropCells;
     public Vector2Int[] PotCells;
     public Vector2Int[] VortexCells;
     public Vector2Int PnjCells;
-    GameObject PrefabPnj;
-    GameObject pnj;
+    public GameObject PrefabPnj;
+    public GameObject pnj;
 
     [SerializeField]
     private GameObject PrefabVortex;
-    GameObject[] vortex;
+    public GameObject[] vortex;
 
     public bool[,] isBlocked;
     public GameObject[,] ObjAffPos;
 
-    GameObject PrefabBigPot;
-    GameObject PrefabLittlePot;
-    GameObject[] Pot;
+    public GameObject PrefabBigPot;
+    public GameObject PrefabLittlePot;
+    public GameObject[] Pot;
 
-    GameObject PrefabEnnemy;
-    GameObject[] Ennemy;
+    public GameObject PrefabEnnemy;
+    public GameObject[] Ennemy;
 
     private void Start()
     {

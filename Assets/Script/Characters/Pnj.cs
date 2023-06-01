@@ -12,10 +12,12 @@ public class Pnj : BasiquePos
     Pnj pnj;
 
     public GameObject DialogBox;
-    Text text;
+    public Text text;
 
     private void Start()
     {
+        pnj = this;
+
         pnj.Position = new Vector2Int((int)transform.position.x, (int)transform.position.y);
         pnj.Offset = 0.5f;
 

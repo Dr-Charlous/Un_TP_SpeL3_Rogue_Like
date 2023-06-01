@@ -250,8 +250,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84869f1485a01bb4fab9e1e34e1e171d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemap: {fileID: 685496146}
-  _tile: {fileID: 11400000, guid: 3f9b70d7fce800746b7812fce7aa94d0, type: 2}
   MapSize: {x: 30, y: 20}
   BlockedCells:
   - {x: 12, y: 9}
@@ -422,16 +420,14 @@ MonoBehaviour:
   - {x: 16, y: 6}
   PnjCells: {x: 18, y: 14}
   PrefabPnj: {fileID: 9002915926643274970, guid: db63720c53264a54f8dd965e6f63ebfb, type: 3}
-  pnj: {fileID: 9002915926643274970, guid: db63720c53264a54f8dd965e6f63ebfb, type: 3}
+  pnj: {fileID: 0}
   PrefabVortex: {fileID: 5962566191723304280, guid: 51ff2f70a84312345a17abdeea1aa003, type: 3}
   vortex: []
   PrefabBigPot: {fileID: 3481282652248986221, guid: 24289f0a8a048a348972f40300029fb1, type: 3}
   PrefabLittlePot: {fileID: 1136935601650004388, guid: 4507833dc62077b46a21b8bcee752fc3, type: 3}
   Pot: []
-  OriginPosition: {x: 2, y: 2}
   PrefabEnnemy: {fileID: 8340920321854667608, guid: 6c131e964f5795b4382ccf86f37d06ce, type: 3}
   Ennemy: []
-  OriginPositionEnnemy: {x: 5, y: 5}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

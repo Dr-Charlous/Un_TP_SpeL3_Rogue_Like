@@ -11,9 +11,9 @@ public class Player : Character
 
     }
 
-    Text Stats;
+    public Text Stats;
 
-    Player player;
+    public Player player;
 
     public int InitLife;
     public int Coin;
